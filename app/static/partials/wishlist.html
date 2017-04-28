@@ -1,0 +1,52 @@
+
+
+<div ng-include src="'/static/partials/header.html'"></div>
+
+<div>
+    <h1> WELCOME TO YOUR WISHLIST </h1>
+</div>
+
+<div class="wishlist">
+    
+        
+    <div ng-show=" error == 'true' ">
+        <p class="message"> {{ message }}</p>
+        
+    </div>
+    
+    <div>
+        <a class="btn btn-primary" href="addwish">Make a New Wish</a>
+        <a class="btn btn-primary" ng-click='get_wishes($event)'>View List </a>
+    </div>
+    
+    <!--<ul>-->
+    <!--    <li ng-repeat=" item in wishlist ">-->
+    <!--        <p>{{item.url}}</p>-->
+        
+    <!--        <img src=""></img>  -->
+    <!--    </li>-->
+    <!--</ul>-->
+    
+    <div class="gallery"  ng-repeat= "item in wishlist">
+      <a target="_blank" href="" class"">
+        <button data-tooltip="REMOVE" class="btn-danger" title="Remove Wish!" style="position:fixed;" ng-click="delete($event,$index)">X</button>
+        <img src={{item.thumbnail_url}} alt="" width="300" height="200">
+      </a>
+      <div class="desc">
+          <p class=title> {{item.title}} </p>
+          <p class=desc> {{item.description}}</p>
+              <a href={{item.url}} ><p class=url> {{item.url}}</p>
+          </a>
+          
+          
+          <!--<a class="btn" ng-click="showDetails = ! showDetails"> Create Wish </a>-->
+         <!-- <div class="wishing-details" ng-class="{ 'hidden': ! showDetails }">-->
+         <!--   <a ng-click="addItem($index)">ADD</a>-->
+         <!--</div>-->
+      </div>
+      
+    </div>
+    
+    
+    
+</div>

@@ -1,0 +1,54 @@
+
+<div ng-include src="'/static/partials/header.html'"></div>
+
+    <div class =profile>
+        <h1 class="page-header">HOME</h1>
+   
+        <div class="container" id="maincontent" tabindex="-1">
+            <div class="row">
+                <div class="col-lg-12">
+                    
+                    <div class= profile-img>
+                        <img class="img-responsive" src="static/uploads/avatars/manager.png" alt="">
+                    </div>
+                    
+                    <div class="profile-task">
+                        
+                        <hr class="star-light">
+                        
+                        <h> Hello {user} Welcome to your wishlistApp. </br> What would you like to do ?</h> 
+                        <div class="tasks">
+                            <div ng-switch on="wish">
+                                <div ng-switch-default class= task> <a ng-click="wish=true" href="/addwish"> Make a wish :) </a> </div>
+                                <div ng-switch-when="true">
+                                    <span ><input  type="text" placeholder="enter url for you wishes" ng-model="wish_url">
+                                      <a href="" ng-click="wish=true">MAKE WISH </a>
+                                      <a href="" ng-click="wish=true">CANCEL</a>
+                                </span>  
+                                
+                                </div>
+                            </div>
+                                            
+                            
+                            <div class= task> <a " href="wishlist"> View my wishes </a> </div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                    
+                    
+                    <div class="intro-text">
+                        <hr class="star-light">
+                        <span class="skills">This web app is for creating your very own wishlist APP.</span>
+                        <p class=skills> {{ welcome }} </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    
+    
+        
+    

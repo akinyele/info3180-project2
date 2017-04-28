@@ -1,0 +1,46 @@
+<div ng-include src="'/static/partials/header.html'"></div>
+
+
+<div>
+    </br></br><p> ENTER THE URL OF THE PAGE YOU WOULD LIKE TO GET IMAGES FROM</p>
+</div>
+
+<form name='urlForm'>
+        
+        <div>
+            <span>
+                <input type="text" class='search' name="url" ng-model='wish_url'/></br>
+                
+                <button class='btn btn-primary active' ng-click='getUrl($event)'>GET URLS</button>
+                
+                </br>
+                </p class=message>A Title and Description is needed for every wish</p>
+                <input type="text" name="title" placeholder='Title' ng-model='item_title' ng-model="textEntered"/>
+                <input type="text" name="desc" placeholder='Description' ng-model='item_desc' required/>
+                
+            </span>
+        </div>
+
+
+
+        <div class='content'>
+                   
+            
+            <div class="gallery"  ng-repeat= " x in thumbnails">
+              <a target="_blank" href="">
+                <img src={{x}} alt="" width="300" height="200">
+              </a>
+              <div class="desc">
+                 <button  ng-click="addItem($event,$index)"  class="btn-success" data-tooltip="ADD" type="submit"
+                          >+</a>
+                          <!--ng-disabled="!urlForm.title.$error.required"-->
+                 <!--<a class="btn"  ng-click="showDetails = ! showDetails"> Create Wish </a>-->
+                 <!--<div class="wishing-details" ng-class="{ 'hidden': ! showDetails }">-->
+                 <!--</div>-->
+              </div>
+              
+            </div>
+            
+        </div>
+
+</form>

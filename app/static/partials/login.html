@@ -1,0 +1,50 @@
+<div ng-include src="'/static/partials/header.html'"></div>
+
+ 
+
+<div class="login-form center-block">
+  <div class="form" >
+    <!--<div ng-controller="registrationCtrl">-->
+    <!--</div>-->
+      <form class="register-form" ng-submit="register($event)">
+        
+        <input type="email" name="email" placeholder="Email" ng-model="email" required/>
+        <input type="text" name="name" placeholder="name" ng-model ="name" required/>
+        <input type="password" name="password" placeholder="password" ng-model="password" required/>
+        <input type="number" name="age" placeholder="age" ng-model="age" required/>
+        
+        <div class="radios" ><p  class="message">Select a gender: </p></div>
+        <div class=radios ><input type="radio" name="gender" ng-model="gender" value="Male" required>Male </div>
+        <div class=radios ><input type="radio" name="gender" ng-model="gender" value="Female" required>Female</div>
+          
+        <p class= message style="float:left;margin-bottom:12px;">Select a Avatar:</p>
+        <select style="float:left;margin:10px 10px 0px 15px" ng-model="image" required>
+          <option value="businessman.png">businessman
+          <option value="manager.png">manager
+          <option value="motorcyclist.png">motorcyclist
+          <option value="Running.png">Running
+          <option value="scientist.png">scientist
+        </select> 
+        <img class="avatar" src="/static/uploads/avatars/{{image}}" ng-model="image" ></img>
+        
+        <button name="submit" >create</button>
+        <p class="message">Already registered? <a href="#">Sign In</a></p>
+      </form>
+      
+      
+    <!--<div ng-controller="loginCtrl"> -->
+    <!--</div>-->
+     <form class="login-form" ng-submit ="user_login($event)">
+       
+        <input type="email" name="email" placeholder="email" ng-model="email" required/>
+        <input type="password" name="password" placeholder="password" ng-model="password" required/>
+        
+        <button type="submit" name="submit">login</button>
+        <p class="message">Not registered? <a href="#">Create an account</a></p>
+      </form>
+  </div>
+</div>
+  
+
+<script type="text/javascript" src="/static/js/login.js"></script>
+   
