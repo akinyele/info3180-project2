@@ -1,12 +1,18 @@
 # ----------------------
 # Flask
 # ----------------------
+
+
 flask
 Flask-WTF
 Flask-SQLAlchemy
 Flask-Migrate
 Flask-Login
 psycopg2
+flask-triangle
+requests
+beautifulsoup4
+
 
 # ----------------------
 # Production Server

@@ -1,12 +1,15 @@
 from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
+from flask_triangle import Triangle
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "change this to be a more random key"
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://user:password@localhost/database"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://info3180:wishlist123@localhost/Wishlist_API"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True # added just to suppress a warning
 
+Triangle(app)
 db = SQLAlchemy(app)
 
 # Flask-Login login manager
