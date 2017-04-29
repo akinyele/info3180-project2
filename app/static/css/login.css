@@ -1,5 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+
+[type="radio"]:not(:checked), [type="radio"]:checked {
+    position: RELATIVE;
+    left: 0;
+    opacity: 100;
+}
+
+
 .login-page {
   width: 360px;
   padding: 8% 0 0;

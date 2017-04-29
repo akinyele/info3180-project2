@@ -2,7 +2,7 @@
 
 
 <div>
-    </br></br><p> ENTER THE URL OF THE PAGE YOU WOULD LIKE TO GET IMAGES FROM</p>
+    </br></br><p class="flow-text"> ENTER THE URL OF THE PAGE YOU WOULD LIKE TO GET IMAGES FROM</p>
 </div>
 
 <form name='urlForm'>
@@ -11,12 +11,16 @@
             <span>
                 <input type="text" class='search' name="url" ng-model='wish_url'/></br>
                 
-                <button class='btn btn-primary active' ng-click='getUrl($event)'>GET URLS</button>
+                <button class='btn btn-primary' ng-click='getUrl($event)'>GET URLS</button>
                 
                 </br>
-                </p class=message>A Title and Description is needed for every wish</p>
-                <input type="text" name="title" placeholder='Title' ng-model='item_title' ng-model="textEntered"/>
-                <input type="text" name="desc" placeholder='Description' ng-model='item_desc' required/>
+                <p class="flow-text">A Title and Description is needed for every wish</p>
+                <div class="col s6">
+                    <!--<label for="Title">Title</label>-->
+                    <input type="text" name="title" placeholder='Item Title goes here' ng-model='item_title' class="validate" ng-model="textEntered"/>
+                    <!--<label for="desc">Description</label>-->
+                    <input type="text" name="desc" placeholder='Item Description goes here' ng-model='item_desc' class="validate" required/>
+                </div>
                 
             </span>
         </div>
