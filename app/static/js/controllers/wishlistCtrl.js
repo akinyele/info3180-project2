@@ -78,6 +78,11 @@ app.controller('wishlistController',function($rootScope,$scope,$http,$location,a
                              ' image:' + $scope.image +
                              ' token: ' + localStorage.getItem('token') );
                 
+                localStorage.setItem("isLogin", true );
+                $scope.loginText='Logout';
+                        
+                
+                
                 $location.path('/');
                 
             },function(response) {
