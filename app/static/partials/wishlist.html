@@ -19,17 +19,11 @@
         <a class="btn btn-primary" ng-click='get_wishes($event)'>View List </a>
     </div>
     
-    <!--<ul>-->
-    <!--    <li ng-repeat=" item in wishlist ">-->
-    <!--        <p>{{item.url}}</p>-->
-        
-    <!--        <img src=""></img>  -->
-    <!--    </li>-->
-    <!--</ul>-->
-    
     <div class="gallery"  ng-repeat= "item in wishlist">
       <a target="_blank" href="" class"">
-        <button data-tooltip="REMOVE" class="btn-danger" title="Remove Wish!" style="position:fixed;" ng-click="delete($event,$index)">X</button>
+            <button data-tooltip="REMOVE" class="btn-danger" title="Remove Wish!" style="position:absolute;z-index:1;" ng-click="delete($event,$index)">
+            <strong>&times; </strong></button>
+            
         <img src={{item.thumbnail_url}} alt="" width="300" height="200">
       </a>
       <div class="desc">

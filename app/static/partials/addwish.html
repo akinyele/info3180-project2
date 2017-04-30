@@ -6,7 +6,12 @@
 </div>
 
 <form name='urlForm'>
-        
+        <div class='status-msg'>
+            <div class="{{message_class}}" style ="display:{{message_status}};">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <p class=''> <strong>{{message}}</strong>  </p>
+            </div>
+        </div>
         <div>
             <span>
                 <input type="text" class='search' name="url" ng-model='wish_url'/></br>
@@ -31,17 +36,18 @@
                    
             
             <div class="gallery"  ng-repeat= " x in thumbnails">
+              <button style="position:absolute;z-index:1;" ng-click="addItem($event,$index)"  class="btn-success" data-tooltip="ADD" type="submit"
+                          >&plus;</button>
               <a target="_blank" href="">
                 <img src={{x}} alt="" width="300" height="200">
               </a>
-              <div class="desc">
-                 <button  ng-click="addItem($event,$index)"  class="btn-success" data-tooltip="ADD" type="submit"
-                          >+</a>
+                 
+              <!--<div class="desc">-->
                           <!--ng-disabled="!urlForm.title.$error.required"-->
                  <!--<a class="btn"  ng-click="showDetails = ! showDetails"> Create Wish </a>-->
                  <!--<div class="wishing-details" ng-class="{ 'hidden': ! showDetails }">-->
                  <!--</div>-->
-              </div>
+              <!--</div>-->
               
             </div>
             

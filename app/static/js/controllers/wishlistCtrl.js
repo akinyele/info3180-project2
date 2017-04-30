@@ -2,10 +2,13 @@
 
 app.controller('wishlistController',function($rootScope,$scope,$http,$location,base_url) {
     
-    //$scope.user = {}
+    $scope.user = {}
     //$scope.wishlist = []
+    $scope.$watch('user', function(newValue, oldValue) {
+      
+    });
     $scope.message = ""
-    
+    $scope.message_status = "none"
     
     //TO DO: add $scope watches for certain varialbs 
     
@@ -125,20 +128,20 @@ app.controller('wishlistController',function($rootScope,$scope,$http,$location,b
                     let message = response.message;
                     console.log(" error:" +response.data.error)
                     console.log(" message:" +response.data.message)
-                    console.log(" id:" +response.data.data['user']['id'])
+                    //console.log(" id:" +response.data.data['user']['id'])
                     
                     
                     //$scope.wishlist.push('item')
-                    // if there was no error send to user to wish list his wishlist route.    
-                    if( !response.data.error ){
+                    if( !response.data.error ){// if there was no error send to user to wish list his wishlist route.    
+
                         localStorage.setItem("isLogin", true );
                         $scope.loginText='Logout';
-                        
                         localStorage.setItem('cur_user', JSON.stringify(response.data.data['user']))
+                        $scope.user = response.data.data['user']; 
+                        
                         
                         
                         let user = JSON.parse(localStorage.getItem('cur_user'));
-                        
                         console.log("local storage cur_user: "+user['id'] );
                         
                         var req = {
@@ -153,7 +156,7 @@ app.controller('wishlistController',function($rootScope,$scope,$http,$location,b
                         
                         $http(req).then(function(response) {
                             
-                            if(response.data.error){
+                            if(response.data.error){ //no wishlist for user
                                 
                                 $scope.error = response.data.error;
                                 //$scope.wishlist = {}
@@ -177,6 +180,12 @@ app.controller('wishlistController',function($rootScope,$scope,$http,$location,b
                         })
                         
                         $location.path('/wishlist');
+                    }else {
+                        console.log("login error")
+                        
+                        $scope.message = response.data.message
+                        $scope.message_class = "alert alert-danger alert-dismissable fade in"
+                        $scope.message_status = ""
                     }
                     
                   
@@ -191,10 +200,6 @@ app.controller('wishlistController',function($rootScope,$scope,$http,$location,b
     $scope.getUrl= function(event){ //access the API url scapper function
         event.preventDefault();
         
-        
-        
-        
-            
         //CANNOT SEND JSON DATA WITH GET REQUEST    
         var req = {
                  method: 'POST',
@@ -215,11 +220,15 @@ app.controller('wishlistController',function($rootScope,$scope,$http,$location,b
                 console.log(response.data.message);
                 $scope.thumbnails = response.data.data['thumbnails']
             }
+        }
+        , function(response){
             
+            $scope.message = response.statusText + ": SOMETHING WENT WRONG, PlEASE ENSURE YOU ENTERED A VALID URL";
             
-            
-            
-        });
+            $scope.message_class = "alert alert-danger alert-dismissable fade in"
+            $scope.message_status = ""
+        }
+        );
         
     };//end of get url function
     
@@ -267,7 +276,15 @@ app.controller('wishlistController',function($rootScope,$scope,$http,$location,b
                 $location.path('wishlist')
             }
             
-        });
+        }
+        , function(response){
+            
+            $scope.message = response.statusText + ": SOMETHING WENT WRONG, PlEASE ENSURE YOU ENTERED A TILE AND DESCRIPTION FOR YOUR ITEM";
+            
+            $scope.message_class = "alert alert-danger alert-dismissable fade in"
+            $scope.message_status = ""
+        }
+        );
               
       
       
@@ -373,9 +390,8 @@ app.controller('wishlistController',function($rootScope,$scope,$http,$location,b
             //TODO: logs out the user and clears local storage of vallues
             
             $scope.loginText = 'Login';
-            localStorage.setItem('isLogin', false)
-            localStorage.setItem('token', null)
-            
+            localStorage.removeItem('isLogin')
+            localStorage.removeItem('token');
             $location.path('/login');
             
         }else{  

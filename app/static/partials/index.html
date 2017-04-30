@@ -16,21 +16,11 @@
                         
                         <hr class="star-light">
                         
-                        <h> Hello {user} Welcome to your wishlistApp. </br> What would you like to do ?</h> 
+                        <h class=flow-text> Hello {{ user.id }} Welcome to your wishlistApp. </br> What would you like to do ?</h> 
                         <div class="tasks">
-                            <div ng-switch on="wish">
-                                <div ng-switch-default class= task> <a ng-click="wish=true" href="/addwish"> Make a wish :) </a> </div>
-                                <div ng-switch-when="true">
-                                    <span ><input  type="text" placeholder="enter url for you wishes" ng-model="wish_url">
-                                      <a href="" ng-click="wish=true">MAKE WISH </a>
-                                      <a href="" ng-click="wish=true">CANCEL</a>
-                                </span>  
-                                
-                                </div>
-                            </div>
-                                            
-                            
-                            <div class= task> <a " href="wishlist"> View my wishes </a> </div>
+                            <div class= task> <a class='btn btn-primary' href="/addwish"> Make a wish :) </a> </div>
+                        
+                            <div class= task> <a class='btn btn-primary' href="wishlist"> View my wishes </a> </div>
                         </div>
                         
                         
