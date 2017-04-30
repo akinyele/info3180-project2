@@ -123,7 +123,7 @@ def API_login():
     try:
         user = UserProfile.query.filter_by(token = token).first()
     except exc.SQLAlchemyError:
-        return jsonify( error = True, data = {} , message =  "SERVER ERROR Database unreachable"), 501
+        return jsonify( error = True, data = {} , message =  "SERVER ERROR Database unreachable"), 500
     
     
     if not user :

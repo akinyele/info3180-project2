@@ -1,6 +1,6 @@
 
 
-app.controller('wishlistController',function($rootScope,$scope,$http,$location,base_url) {
+app.controller('wishlistController',function($rootScope,$scope,$http,$location,api_url) {
     
     $scope.user = {}
     //$scope.wishlist = []
@@ -31,7 +31,7 @@ app.controller('wishlistController',function($rootScope,$scope,$http,$location,b
         event.preventDefault();
         
         //Recieving token
-        $http.post(base_url+"/token",
+        $http.post(api_url+"/token",
         {
           password: $scope.password,
           email: $scope.email
@@ -53,7 +53,7 @@ app.controller('wishlistController',function($rootScope,$scope,$http,$location,b
             var req = {
             
                 method:'POST',
-                url:base_url + '/api/users/register',
+                url:api_url + '/api/users/register',
                 headers : {
                     'Content-Type':'application/json',
                     'Authorization': 'Basic '+ token
@@ -83,7 +83,16 @@ app.controller('wishlistController',function($rootScope,$scope,$http,$location,b
             },function(response) {
                   $scope.data = response.data || 'Request failed';
                   $scope.status = response.status;
-            });
+            }
+            , function(response){
+            
+                $scope.message = response.statusText + ": SOMETHING WENT WRONG : " +response.data.message;
+                
+                $scope.message_class = "alert alert-danger alert-dismissable fade in"
+                $scope.message_status = ""
+            }
+            
+            );
         });
         
     };//end of registration function
@@ -92,7 +101,7 @@ app.controller('wishlistController',function($rootScope,$scope,$http,$location,b
         //$scope.wishlist = [];
         
         //Recieving token
-        $http.post(base_url+"/token",{
+        $http.post(api_url+"/token",{
           password: $scope.password,
           email: $scope.email
         },
@@ -113,7 +122,7 @@ app.controller('wishlistController',function($rootScope,$scope,$http,$location,b
             //making request to be sent ot server
             var req = {
                 method: 'POST',
-                url: base_url+'/api/users/login',
+                url: api_url+'/api/users/login',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Basic '+ localStorage.getItem('token')
@@ -146,7 +155,7 @@ app.controller('wishlistController',function($rootScope,$scope,$http,$location,b
                         
                         var req = {
                             method: 'GET',
-                            url: base_url+'/api/users/'+user['id']+'/wishlist',
+                            url: api_url+'/api/users/'+user['id']+'/wishlist',
                             headers: {
                                 'Content-Type': 'application/json',
                                 'Authorization': 'Basic '+ localStorage.getItem('token')
@@ -203,7 +212,7 @@ app.controller('wishlistController',function($rootScope,$scope,$http,$location,b
         //CANNOT SEND JSON DATA WITH GET REQUEST    
         var req = {
                  method: 'POST',
-                 url:base_url+'/api/thumbnails',
+                 url:api_url+'/api/thumbnails',
                  headers: {
                    'Content-Type': 'application/json',
                     'Authorization': 'Basic ' + localStorage.getItem('token')
@@ -247,7 +256,7 @@ app.controller('wishlistController',function($rootScope,$scope,$http,$location,b
       
       var req = {
           method:'POST',
-          url:base_url+'/api/users/'+user['id']+'/wishlist',
+          url:api_url+'/api/users/'+user['id']+'/wishlist',
           headers: {
                    'Content-Type': 'application/json',
                     'Authorization': 'Basic ' + localStorage.getItem('token')
@@ -302,7 +311,7 @@ app.controller('wishlistController',function($rootScope,$scope,$http,$location,b
         
         var req = {
             method: 'GET',
-            url: base_url+'/api/users/'+ user['id']+'/wishlist',
+            url: api_url+'/api/users/'+ user['id']+'/wishlist',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic '+ localStorage.getItem('token')
@@ -357,7 +366,7 @@ app.controller('wishlistController',function($rootScope,$scope,$http,$location,b
         
         var req = {
             method:'DELETE',
-            url:base_url+'/api/users/'+user['id']+'/wishlist/'+delete_item.id,
+            url:api_url+'/api/users/'+user['id']+'/wishlist/'+delete_item.id,
             headers:{
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic '+ localStorage.getItem('token')
@@ -417,7 +426,7 @@ app.controller('wishlistController',function($rootScope,$scope,$http,$location,b
 
 
 
-app.controller('login_reg_ctrl', function($scope,$http,$location,base_url){
+app.controller('login_reg_ctrl', function($scope,$http,$location,api_url){
     
     $scope.all_users = []
     $scope.wishlist = []
