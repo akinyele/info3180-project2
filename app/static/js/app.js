@@ -3,10 +3,10 @@
 
 var app = angular.module('wishlistApp', ["ngRoute"]);
 
-//let base_url = "http://info3180-project2-akinyele.c9users.io:8080";
 
-app.value('base_url', 'http://info3180-project2-akinyele.c9users.io:8080');
+//app.value('base_url', 'http://info3180-project2-akinyele.c9users.io:8080');
 
+app.value('base_url', 'https://whispering-eyrie-16954.herokuapp.com');
 
 
 
